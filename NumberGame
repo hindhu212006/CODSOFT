@@ -1,0 +1,62 @@
+package task;
+import java.util.Random;
+import java.util.Scanner;
+
+public class NumberGame {
+
+	public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        Random random = new Random();
+
+	        String playAgain;
+	        int totalScore = 0;
+
+	        do {
+	            int number = random.nextInt(100) + 1; // Random number between 1 and 100
+	            int attempts = 10;
+	            boolean guessed = false;
+
+	            System.out.println("\n=== Number Guessing Game ===");
+	            System.out.println("Guess a number between 1 and 100");
+	            System.out.println("You have " + attempts + " attempts.");
+
+	            while (attempts > 0) {
+	                System.out.print("Enter your guess: ");
+	                int guess = sc.nextInt();
+
+	                if (guess == number) {
+	                    System.out.println("🎉 Correct! You guessed the number.");
+	                    totalScore += attempts * 10;
+	                    guessed = true;
+	                    break;
+	                } else if (guess < number) {
+	                    System.out.println("Too Low!");
+	                } else {
+	                    System.out.println("Too High!");
+	                }
+
+	                attempts--;
+	                System.out.println("Attempts left: " + attempts);
+	            }
+
+	            if (!guessed) {
+	                System.out.println("❌ Game Over!");
+	                System.out.println("The correct number was: " + number);
+	            }
+
+	            System.out.println("Current Score: " + totalScore);
+
+	            System.out.print("Do you want to play again? (yes/no): ");
+	            playAgain = sc.next();
+
+	        } while (playAgain.equalsIgnoreCase("yes"));
+
+	        System.out.println("Final Score: " + totalScore);
+	        System.out.println("Thank you for playing!");
+
+	        sc.close();
+	    }
+	
+		// TODO Auto-generated method stub
+
+	}
